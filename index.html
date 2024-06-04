@@ -19,6 +19,14 @@
             height: 100%;
         }
 
+        .buccleuch-button {
+            background-color: white;
+            border: 2px solid #ccc;
+            padding: 5px 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
         .leaflet-marker-icon {
             border-radius: 50%;
             width: 30px;
@@ -760,7 +768,24 @@
         L.geoJSON(powerstationInverter, { color: "#050505", fillColor: "#828583", fillOpacity: 1, weight: 1 }).bindTooltip("<p>Powerstation Inverter</p>").addTo(map);
         L.geoJSON(powerstationSwitch, { color: "#050505", fillColor: "#828583", fillOpacity: 1, weight: 1 }).bindTooltip("<p>Powerstation Switch</p>").addTo(map);
         L.geoJSON(powerstationTx, { color: "#050505", fillColor: "#828583", fillOpacity: 1, weight: 1 }).bindTooltip("<p>Powerstation Transformer</p>").addTo(map);
+        
+        // Link to Buccleuch Website
+        var buccleuchWebsite = L.Control.extend({
+            options: {
+                position: 'bottomright'
+            },
+            onAdd: function (map) {
+                var container = L.DomUtil.create('div', 'buccleuch-button');
+                container.innerHTML = 'Buccleuch Website';
+                container.onclick = function () {
+                    window.location.href = 'https://www.buccleuch.com/';
+                };
+                return container;
+            }
+        });
 
+        // Add the custom control to the map
+        map.addControl(new buccleuchWebsite());
     </script>
 </body>
 
